@@ -1,0 +1,31 @@
+The “Game of Pods” is a set of fun challenges that can help students get started learning Kubernetes and to practice real world examples of cloud native application deployment on a real Kubernetes cluster.
+
+To play, once the terminal is loaded, open the challenge/quiz portal by clicking on the tab at the top.
+
+You will receive a quest to deploy a web server architecture stack for a particular software distribution, for example: Drupal with MySQL.
+
+Set up an example volume with storage allocation for the partition with the code:
+
+Volume Name: drupal-mysql-pv
+  Storage: 5Gi
+  Access modes: ReadWriteOnce
+  
+In order to do this, Create the persistent storage volume for Drupal on the web server cluster using YAML:
+
+master $ cat > drupal-mysql-pv.yaml
+  ---
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+   name: drupal-mysql-pv
+  spec:
+   accessModes: [ “ReadWriteOnce” ]
+   capacity:
+   storage: “5Gi”
+   hostPath:
+   path: /drupal-mysql-data
+  master $
+  
+Then test your work by clicking on the “Check” button in the game-board.
+
+
