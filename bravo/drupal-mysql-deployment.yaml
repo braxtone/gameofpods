@@ -20,7 +20,6 @@ spec:
       containers: 
       - image: mysql:5.7
         name: mysql
-        ports: 
         env:
           - name: MYSQL_ROOT_PASSWORD
             valueFrom:
@@ -37,6 +36,7 @@ spec:
               secretKeyRef:
                 name: drupal-mysql-secret
                 key: MYSQL_USER
+        ports:
         - containerPort: 3306
           name: mysql
         volumeMounts: 
@@ -44,7 +44,7 @@ spec:
           name: drupal-mysql-data
           subPath: dbdata
       volumes: 
-      - name: dbdata
+      - name: drupal-mysql-data
         persistentVolumeClaim: 
           claimName: drupal-mysql-pvc
 
