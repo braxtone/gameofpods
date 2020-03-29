@@ -21,11 +21,27 @@ spec:
       - image: mysql:5.7
         name: mysql
         ports: 
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: drupal-mysql-secret
+                key: MYSQL_ROOT_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: drupal-mysql-secret
+                key: MYSQL_DATABASE
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: drupal-mysql-secret
+                key: MYSQL_USER
         - containerPort: 3306
           name: mysql
         volumeMounts: 
         - mountPath: /var/lib/mysql
-          name: dbdata
+          name: drupal-mysql-data
           subPath: dbdata
       volumes: 
       - name: dbdata
