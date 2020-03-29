@@ -13,6 +13,6 @@ spec:
   type: ClusterIP
   ports:
     - name: mysql
-      port: 443
+      port: 3306
       protocol: TCP
-      targetPort: 443
+      targetPort: 3306
