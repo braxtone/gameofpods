@@ -4,18 +4,16 @@ kind: Deployment
 metadata: 
   name: drupal-mysql
   labels:
-    app: drupal
+    app: drupal-mysql
 spec: 
   replicas: 1
   selector: 
     matchLabels: 
-      app: drupal
-      tier: mysql
+      app: drupal-mysql
   template: 
     metadata:
       labels:
-        app: drupal
-        tier: mysql
+        app: drupal-mysql
     spec: 
       containers: 
       - image: mysql:5.7
