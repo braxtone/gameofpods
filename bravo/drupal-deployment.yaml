@@ -62,6 +62,8 @@ spec:
         - mountPath: /var/www/html/themes
           name: drupal-data
           subPath: themes
+        - mountPath: /data
+          name: drupal-data
       volumes: 
       - name: drupal-data
         persistentVolumeClaim: 
