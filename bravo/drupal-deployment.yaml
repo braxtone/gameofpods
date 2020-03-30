@@ -23,8 +23,6 @@ spec:
       initContainers:
       - name: init-sites-volume
         image: drupal:8.6
-        persistentVolumeClaim: drupal-pvc
-        mountPath: /data
         command: [ "/bin/bash", "-c"]
         args: [ 'cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R' ]
       containers: 
