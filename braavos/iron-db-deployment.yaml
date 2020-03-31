@@ -27,4 +27,6 @@ spec:
            volumeMounts:
              - mountPath: /var/lib/mysql
                name: db
-               type: emptyDir
+      volumes:
+        - name: db
+          type: emptyDir
