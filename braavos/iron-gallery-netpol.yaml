@@ -9,8 +9,8 @@ spec:
   ingress:
   - from:
     - podSelector:
-      matchLabels:
-        run: iron-gallery
+        matchLabels:
+          run: iron-gallery
     ports:
       - protocol: TCP
         port: 3306
