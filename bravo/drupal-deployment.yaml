@@ -47,6 +47,8 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
+        - containerPort: 80
+          name: drupal
         volumeMounts: 
         - mountPath: /var/www/html/modules
           name: drupal-data
