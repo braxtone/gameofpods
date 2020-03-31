@@ -27,6 +27,9 @@ spec:
           volumeMounts:
           - mountPath: /var/lib/mysql
             name: db
+          ports:
+          - containerPort: 3306
+            name: mysql
       volumes:
         - name: db
           emptyDir: {}
