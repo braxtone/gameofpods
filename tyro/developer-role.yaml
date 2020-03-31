@@ -20,7 +20,7 @@ metadata:
 subjects:
   - kind: User
     name: drogo
-    apiGroup: rback.authorization.k8s.io
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: developer-roleRef
