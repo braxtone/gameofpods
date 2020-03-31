@@ -1,0 +1,16 @@
+# TODO: Create Ingress referencing IngressController
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: iron-gallery-ingress
+spec:
+  rules:
+  - http:
+    paths:
+      - path: /
+        backend:
+          serviceName: iron-gallery-service
+          servicePort: 80
+
+# TODO: Create IngressController
