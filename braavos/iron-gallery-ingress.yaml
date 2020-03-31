@@ -1,5 +1,28 @@
-# TODO: Create IngressController
-# Maybe done for me?
+# TODO:
+# Ingress resource configured correctly and application accessible at
+# 'http://iron-gallery-braavos.com:30099/'
+# Ingress Resource, name: 'iron-gallery-ingress'
+# host: iron-gallery-braavos.com
+# http parth: '/'
+# http backend serviceName: 'iron-gallery-service'
+# Name: ingress-spacehttp backend servicePort: '80'
+#
+# Maybe this is how we're supposed to get the nodePort to show up?
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gallery-of-bravos
+spec:
+  selector:
+    name: iron-gallery
+  type: NodePort
+  ports:
+  - targetPort: 80
+    port: 30099
+    protocol: TCP
+
+# This gets everything except for the first TODO
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
