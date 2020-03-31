@@ -23,6 +23,6 @@ subjects:
     apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
-  name: developer-roleRef
+  name: developer-role
   apiGroup: rbac.authorization.k8s.io
 
