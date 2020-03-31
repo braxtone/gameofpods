@@ -21,6 +21,10 @@ spec:
           mountPath: /usr/share/nginx/html/data
         - name: images
           mountPath: /usr/share/nginx/html/uploads
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "50m"
       volumes:
       - name: config
         emptyDir: {}
