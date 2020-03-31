@@ -10,5 +10,6 @@ spec:
   ports:
     - name: drupal
       port: 30095
-      protocol: TCP
       targetPort: 80
+      nodePort: 30095
+      protocol: TCP
