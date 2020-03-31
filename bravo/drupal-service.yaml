@@ -8,6 +8,7 @@ spec:
     app: drupal
   type: NodePort
   ports:
-    - port: 30095
+    - name: drupal
+      port: 30095
       protocol: TCP
       targetPort: 80
