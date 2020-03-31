@@ -12,5 +12,6 @@ spec:
     - name: jekyll
       port: 8080
       targetPort: 4000
-      nodePort: 30087
+      nodePort: 30097
+      protocol: TCP
 
