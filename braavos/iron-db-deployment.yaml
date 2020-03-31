@@ -24,7 +24,7 @@ spec:
               value: lychee
             - name: MYSQL_PASSWORD
               value: lychee
-      volumes:
-        - name: db
-          type: emptyDir
-          mountPath: /var/lib/mysql
+           volumeMounts:
+             - mountPath: /var/lib/mysql
+               name: db
+               type: emptyDir
