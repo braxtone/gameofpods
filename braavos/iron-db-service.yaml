@@ -5,10 +5,9 @@ metadata:
   name: iron-db-service
 spec:
   selector:
-    name: iron-db
+    db: mariadb
   ports:
   - targetPort: 3306
     port: 3306
     protocol: TCP
-    name: mysql
-    
+  type: ClusterIP
