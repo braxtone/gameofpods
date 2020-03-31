@@ -3,5 +3,5 @@
 # - context:
 #   cluster: "kubernetes"
 #   user: "drogo"
-#   name: developer
+#   name: development
 kubectl config set-credentials drogo --client-certificate=drogo.crt --client-key=drogo.key
