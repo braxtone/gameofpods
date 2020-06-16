@@ -14,6 +14,7 @@ kind: Service
 metadata:
   name: gallery-of-braavos
 spec:
+  type: NodePort
   selector:
     name: iron-gallery
   ports:
