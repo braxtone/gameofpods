@@ -8,20 +8,20 @@
 # Name: ingress-spacehttp backend servicePort: '80'
 #
 # Maybe this is how we're supposed to get the nodePort to show up?
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: gallery-of-braavos
-spec:
-  type: NodePort
-  selector:
-    name: iron-gallery
-  ports:
-  - targetPort: 80
-    port: 80
-    nodePort: 30099
-    protocol: TCP
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: gallery-of-braavos
+# spec:
+#   type: NodePort
+#   selector:
+#     name: iron-gallery-ingress
+#   ports:
+#   - targetPort: 80
+#     port: 80
+#     nodePort: 30099
+#     protocol: TCP
 #
 # This gets everything except for the first TODO
 # Apparently the lab is still running v1.11.3 so we're using the older apiVersion
@@ -38,4 +38,4 @@ spec:
       - path: /
         backend:
           serviceName: iron-gallery-service
-          servicePort: 80
+          servicePort: 30099
