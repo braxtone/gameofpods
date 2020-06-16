@@ -1,29 +1,28 @@
-# TODO:
-# Ingress resource configured correctly and application accessible at
-# 'http://iron-gallery-braavos.com:30099/'
-# xIngress Resource, name: 'iron-gallery-ingress'
-# host: iron-gallery-braavos.com
-# http parth: '/'
-# http backend serviceName: 'iron-gallery-service'
-# Name: ingress-spacehttp backend servicePort: '80'
-#
-# Maybe this is how we're supposed to get the nodePort to show up?
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: gallery-of-braavos
-# spec:
-#   type: NodePort
-#   selector:
-#     name: iron-gallery-ingress
-#   ports:
-#   - targetPort: 80
-#     port: 80
-#     nodePort: 30099
-#     protocol: TCP
-#
-# This gets everything except for the first TODO
+# Bonus exposed deployment to get the NodePort created so that
+# curl -I  http://iron-gallery-braavos.com:30099/ will work.
+# The logs also indicate that the `kubectl apply -f
+# https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml`
+# command fails. I dug through the git history and found it got removed just after 0.30.0 so I ran
+# `kubectl apply -f
+# https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml`
+# before applying these YAML files
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gallery-of-braavos
+  labels:
+    run: iron-gallery
+spec:
+  selector:
+    run: iron-gallery
+  type: NodePort
+  ports:
+  - targetPort: 80
+    port: 80
+    nodePort: 30099
+    protocol: TCP
+
 # Apparently the lab is still running v1.11.3 so we're using the older apiVersion
 ---
 apiVersion: extensions/v1beta1
