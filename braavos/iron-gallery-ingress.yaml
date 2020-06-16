@@ -1,0 +1,42 @@
+# Bonus exposed deployment to get the NodePort created so that
+# curl -I  http://iron-gallery-braavos.com:30099/ will work.
+# The logs also indicate that the `kubectl apply -f
+# https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml`
+# command fails. I dug through the git history and found it got removed just after 0.30.0 so I ran
+# `kubectl apply -f
+# https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml`
+# before applying these YAML files
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gallery-of-braavos
+  labels:
+    run: iron-gallery
+spec:
+  selector:
+    run: iron-gallery
+  type: NodePort
+  ports:
+  - targetPort: 80
+    port: 80
+    nodePort: 30099
+    protocol: TCP
+
+# Apparently the lab is still running v1.11.3 so we're using the older apiVersion
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: iron-gallery-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: iron-gallery-braavos.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: iron-gallery-service
+          servicePort: 80
