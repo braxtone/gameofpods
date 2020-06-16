@@ -30,6 +30,8 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: iron-gallery-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: iron-gallery-braavos.com
@@ -38,4 +40,4 @@ spec:
       - path: /
         backend:
           serviceName: iron-gallery-service
-          servicePort: 30099
+          servicePort: 80
