@@ -15,7 +15,8 @@ spec:
         name: redis
     spec:
       containers:
-        image: redis:alpine
+      - image: redis:alpine
+        name: redis
         volumeMounts:
         - mountPath: /data
           name: redis-data
