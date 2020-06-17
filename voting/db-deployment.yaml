@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
         - image: postgres:9.4
-        name: postgres
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: db-data
+          name: postgres
+          volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: db-data
       volumes:
       - name: db-data
         emptyDir: {}
