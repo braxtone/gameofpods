@@ -15,5 +15,5 @@ spec:
         name: result-deployment
     spec:
       containers:
-        - image: kodekloud/examplevotingapp_vote:before
+      - image: kodekloud/examplevotingapp_vote:before
         name: vote
