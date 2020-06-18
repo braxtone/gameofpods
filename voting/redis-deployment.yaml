@@ -8,11 +8,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: redis
+      name: redis-deployment
   template:
     metadata:
       labels:
-        name: redis
+        name: redis-deployment
     spec:
       containers:
       - image: redis:alpine
