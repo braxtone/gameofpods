@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  namespace: vote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: db
+  template:
+    metadata:
+      labels:
+        name: db
+    spec:
+      containers:
+        - image: postgres:9.4
+          name: postgres
+          volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: db-data
+          env:
+          - name: POSTGRES_PASSWORD
+            value: supersecretsquirrel
+      volumes:
+      - name: db-data
+        emptyDir: {}
