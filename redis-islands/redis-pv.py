@@ -18,7 +18,7 @@ spec:
   hostPath:
     path: /redis0{num}"""
 
-for i in range(1, 6):
+for i in range(1, 7):
     with open(f'./redis-pv-0{i}.yaml', 'w') as f:
         f.write(template.format(num=i))
 
