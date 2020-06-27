@@ -1,4 +1,4 @@
-for i in $(seq 5 $END); do ssh node01 mkdir "/redis0$i"; done
+for i in $(seq 6 $END); do ssh node01 mkdir "/redis0$i"; done
 apt update
 sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
