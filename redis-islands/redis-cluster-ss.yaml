@@ -1,0 +1,59 @@
+# Replicas: 6
+# Pods status: Running (All 6 replicas)
+#
+# (apiVersion: v1)
+#
+# Volume Mount - name: 'conf', mountPath: '/conf', readOnly:'false' (ConfigMap Mount)
+# Volume Mount - name: 'conf', mountPath: '/conf', defaultMode = '0755' (ConfigMap Mount)
+# Volume Mount - name: 'data', mountPath: '/data', readOnly:'false' (volumeClaim)
+#
+# volumes - name: 'conf', Type: 'ConfigMap', ConfigMap Name: 'redis-cluster-configmap',
+#
+# volumeClaimTemplates - name: 'data'
+# volumeClaimTemplates - accessModes: 'ReadWriteOnce'
+# volumeClaimTemplates - Storage Request: '1Gi'
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-cluster
+
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      name: redis-cluster
+
+  serviceName: redis-cluster
+  template:
+    metadata:
+      labels:
+        name: redis-cluster
+    spec:
+      containers:
+      - name: redis
+        image: redis:5.0.1-alpine
+        command: ["/conf/update-node.sh", "redis-server", "/conf/redis.conf"]
+        env:
+        - name: POD_IP
+          valuefrom:
+            fieldRef:
+              fieldPath: 'status.podIP'
+        ports:
+        - containerPort: 6379
+          name: client
+        - containerPort: 16379
+          name: gossip
+        volumeMounts:
+        - name: conf
+          mountPath: /conf
+        - name: conf
+
+  volumeClaimTemplates:
+  - metadata:
+    name: data
+    spec:
+      accessModes: ['ReadWriteOnce']
+      resources:
+        requests:
+          storage: 1Gi
