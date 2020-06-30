@@ -47,11 +47,17 @@ spec:
         volumeMounts:
         - name: conf
           mountPath: /conf
-        - name: conf
-
+          defaultMode: 0755
+          readOnly: false
+        - name: data
+          readOnly: false
+      volumes:
+      - name: conf
+        configMap:
+          name: redis-cluster-configmap
   volumeClaimTemplates:
   - metadata:
-    name: data
+      name: data
     spec:
       accessModes: ['ReadWriteOnce']
       resources:
