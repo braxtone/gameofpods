@@ -1,17 +1,4 @@
-# Replicas: 6
-# Pods status: Running (All 6 replicas)
-#
-# (apiVersion: v1)
-#
-# Volume Mount - name: 'conf', mountPath: '/conf', readOnly:'false' (ConfigMap Mount)
-# Volume Mount - name: 'conf', mountPath: '/conf', defaultMode = '0755' (ConfigMap Mount)
-# Volume Mount - name: 'data', mountPath: '/data', readOnly:'false' (volumeClaim)
-#
-# volumes - name: 'conf', Type: 'ConfigMap', ConfigMap Name: 'redis-cluster-configmap',
-#
-# volumeClaimTemplates - name: 'data'
-# volumeClaimTemplates - accessModes: 'ReadWriteOnce'
-# volumeClaimTemplates - Storage Request: '1Gi'
+# Adding the extra 'app: redis-cluster' to the template will make the configuration command for 'redis-cluster-config' work.
 
 apiVersion: apps/v1
 kind: StatefulSet
@@ -29,6 +16,7 @@ spec:
     metadata:
       labels:
         name: redis-cluster
+        app: redis-cluster
     spec:
       containers:
       - name: redis
