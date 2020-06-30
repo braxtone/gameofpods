@@ -42,7 +42,7 @@ spec:
         command: ["/conf/update-node.sh", "redis-server", "/conf/redis.conf"]
         env:
         - name: POD_IP
-          valuefrom:
+          valueFrom:
             fieldRef:
               apiVersion: v1
               fieldPath: 'status.podIP'
@@ -62,6 +62,7 @@ spec:
       - name: conf
         configMap:
           name: 'redis-cluster-configmap'
+          defaultMode: 0755
   volumeClaimTemplates:
   - metadata:
       name: data
