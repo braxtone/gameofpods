@@ -2,19 +2,18 @@
 # TODO: Figure out some yaml templating system like jinja or ksonnet or
 # whatever that doesn't make me want to claw my eyeballs out
 
+# storageClassName: manual
 template = """---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: redis0{num}
-  labels:
-    type: local
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: manual
   capacity:
     storage: 1Gi
+  volumeMode: Filesystem
   hostPath:
     path: /redis0{num}"""
 
