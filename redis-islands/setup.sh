@@ -6,3 +6,4 @@ sudo add-apt-repository ppa:deadsnakes/ppa
 apt update
 sudo apt install -y python3.7
 python3.7 ./redis-pv.py
+echo "Environment is now setup. Run 'kubectl apply -f ./' to apply the generated PV configs"
