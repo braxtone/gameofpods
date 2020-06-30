@@ -5,7 +5,7 @@ metadata:
   name: redis-data
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   volumeMode: Filesystem
   resources:
     requests:
