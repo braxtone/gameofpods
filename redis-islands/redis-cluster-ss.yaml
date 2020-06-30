@@ -12,12 +12,6 @@
 # volumeClaimTemplates - name: 'data'
 # volumeClaimTemplates - accessModes: 'ReadWriteOnce'
 # volumeClaimTemplates - Storage Request: '1Gi'
-# Errors
-# error: error validating "redis-cluster-ss.yaml":
-# error validating data: [
-#   ValidationError(StatefulSet.spec.template.spec.containers[0].env[0]): unknown field "valuefrom" in io.k8s.api.core.v1.EnvVar,
-#   ValidationError(StatefulSet.spec.template.spec.containers[0].volumeMounts[0]): unknown field "defaultMode" in io.k8s.api.core.v1.VolumeMount,
-# ];
 
 apiVersion: apps/v1
 kind: StatefulSet
@@ -64,8 +58,6 @@ spec:
           name: 'redis-cluster-configmap'
           defaultMode: 0755
       - name: data
-        persistentVolumeClaim:
-          claimName: redis-data
   volumeClaimTemplates:
   - metadata:
       name: data
